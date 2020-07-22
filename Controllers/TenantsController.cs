@@ -64,11 +64,23 @@ namespace Task2_restAPI.Controllers
         }
 
         // GET: api/Flat/5/Tenants
+        // methods get Tenants with house id by Flat id ... :) 
         [HttpGet("/api/Flat/{flatId}/[controller]")]
-        public async Task<IEnumerable<Tenant>> GetTenantsByFlatId(int flatId)
+        public async Task<IEnumerable<TenantVM>> GetTenantsByFlatId(int flatId)
         {
-            var rezult = await _context.Tenants.Where(tenant => tenant.FlatId == flatId).ToListAsync();
-            return rezult; // returns Tenant list filtered by necessary flat id
+            List<TenantVM> resultTenants = new List<TenantVM>(); // initialize empty list
+            TenantVM tenantWithHouseId; // define temp variable
+            // get tenants list from DB
+            var tenantsFromDB = await _context.Tenants.Include(x => x.Flat).Where(tenant => tenant.FlatId == flatId).ToListAsync();
+            // for each element in list => map it into TenantVM and add to result list
+            foreach (Tenant ten in tenantsFromDB)
+            {
+                tenantWithHouseId = _mapper.Map<Tenant, TenantVM>(ten);
+                resultTenants.Add(tenantWithHouseId);
+
+            }
+
+            return resultTenants;
         }
 
         // PUT: api/Tenants/5
