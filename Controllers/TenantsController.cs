@@ -16,10 +16,14 @@ namespace Task2_restAPI.Controllers
     public class TenantsController : ControllerBase
     {
         private readonly ModelContext _context;
+        private readonly IMapper _mapper; // creates mapper instance ? 
 
-        public TenantsController(ModelContext context)
+        // Assign the object in the constructor for dependency injection (whetever it means ...)
+
+        public TenantsController(ModelContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper; // initialize mapper
         }
 
         // GET: api/Tenants
@@ -43,8 +47,8 @@ namespace Task2_restAPI.Controllers
             return tenant;
         }
 
-        //GET: api/Tenants/Flats/5
-        [HttpGet("Flat/{flatId}")]
+        // GET: api/Flat/5/Tenants
+        [HttpGet("/api/Flat/{flatId}/[controller]")]
         public async Task<IEnumerable<Tenant>> GetTenantsByFlatId(int flatId)
         {
             var rezult = await _context.Tenants.Where(tenant => tenant.FlatId == flatId).ToListAsync();
@@ -88,18 +92,22 @@ namespace Task2_restAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Tenant>> PostTenant(createTenantDTO tenantDTO)
+        public async Task<ActionResult<Tenant>> PostTenant(CreateTenantDTO tenantDTO)
         {
-            var config = new MapperConfiguration(cfg => // for DTO
-            {
-                cfg.CreateMap<createTenantDTO, Tenant>();
-            });
-            IMapper iMapper = config.CreateMapper();
-            var tenantDestination = iMapper.Map<createTenantDTO, Tenant>(tenantDTO);
-            _context.Tenants.Add(tenantDestination);
+            // souce -> https://stackoverflow.com/questions/40275195/how-to-set-up-automapper-in-asp-net-core
+            // Instantiate the mapped data transfer object
+            // using the mapper you stored in the private field.
+            // The type of the source object is the first type argument
+            // and the type of the destination is the second.
+            // Pass the source object you just instantiated above
+            // as the argument to the _mapper.Map<>() method.
+
+            var tenant = _mapper.Map<CreateTenantDTO, Tenant>(tenantDTO); // just this single line
+            // which maps TenantDTO to Tenant
+            _context.Tenants.Add(tenant);
             await _context.SaveChangesAsync();
 
-            return Ok(tenantDestination);
+            return Ok(tenant);
         }
 
         // DELETE: api/Tenants/5

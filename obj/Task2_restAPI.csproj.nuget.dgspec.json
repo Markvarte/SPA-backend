@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI.csproj": {}
+    "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\Task2_restAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI.csproj": {
+    "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\Task2_restAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI.csproj",
+        "projectUniqueName": "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\Task2_restAPI.csproj",
         "projectName": "Task2_restAPI",
-        "projectPath": "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI.csproj",
+        "projectPath": "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\Task2_restAPI.csproj",
         "packagesPath": "C:\\Users\\NatalijaMarkvarte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\obj\\",
+        "outputPath": "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -45,6 +45,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

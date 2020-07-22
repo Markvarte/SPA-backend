@@ -15,10 +15,13 @@ namespace Task2_restAPI.Controllers
     public class FlatsController : ControllerBase
     {
         private readonly ModelContext _context;
+        private readonly IMapper _mapper; // creates mapper instance ? 
 
-        public FlatsController(ModelContext context)
+        // Assign the object in the constructor for dependency injection (whetever it means ...)
+        public FlatsController(ModelContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper; // initialize mapper
         }
 
         // GET: api/Flats
@@ -87,12 +90,16 @@ namespace Task2_restAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Flat>> PostFlat(CreateFlatDTO flatDTO)
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<CreateFlatDTO, Flat>();
-            });
-            IMapper iMapper = config.CreateMapper();
-            var flat = iMapper.Map<CreateFlatDTO, Flat>(flatDTO);
+            // souce -> https://stackoverflow.com/questions/40275195/how-to-set-up-automapper-in-asp-net-core
+            // Instantiate the mapped data transfer object
+            // using the mapper you stored in the private field.
+            // The type of the source object is the first type argument
+            // and the type of the destination is the second.
+            // Pass the source object you just instantiated above
+            // as the argument to the _mapper.Map<>() method.
+
+            var flat = _mapper.Map<CreateFlatDTO, Flat>(flatDTO); // just this single line
+            // which maps FlatDTO to Flat
             _context.Flats.Add(flat);
             await _context.SaveChangesAsync();
 

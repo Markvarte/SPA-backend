@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task2_restAPI.ViewModels
 {
-    public class createTenantDTO
+    public class CreateTenantDTO
         {
         public string FirstName { get; set; }
 

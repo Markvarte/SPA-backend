@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Task2_restAPI.Models;
 using AutoMapper;
 using Task2_restAPI.ViewModels;
+using Task2_restAPI.Profiles;
+using System.Collections.Generic;
 
 namespace Task2_restAPI
 {
@@ -24,17 +26,25 @@ namespace Task2_restAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ModelContext>(opt =>
-            opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection"))); // UseInMemoryDatabase / opt.UseSqlServer("ModelList"));
+            // for creating SQL database (not  UseInMemoryDatabase)
+            opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
             services.AddControllers();
 
             services.AddCors(); // for cors and front-end
 
+            //configure autoMapper
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                // create IEnumerable list
+                IEnumerable<Profile> profiles = new Profile[] { new HouseMappingProfile(), new FlatMappingProfile(), new TenantMappingProfile() };
+                // add list to mapper configuration
+                mc.AddProfiles(profiles); 
+            });
 
-            //var config = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<CreateFlatDTO, Flat>();
-            //});
-            //IMapper iMapper = config.CreateMapper();
+            IMapper mapper = mappingConfig.CreateMapper(); // Creates mapper
+            services.AddSingleton(mapper); // add mapper to pattenr ? 
+
+            services.AddMvc(); // another pattern ??
 
         }
 

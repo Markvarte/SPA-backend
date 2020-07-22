@@ -15,11 +15,14 @@ namespace Task2_restAPI.Controllers
     [ApiController]
     public class HousesController : ControllerBase
     {
+        private readonly IMapper _mapper; // creates mapper instance ? 
         private readonly ModelContext _context;
 
-        public HousesController(ModelContext context)
+        // Assign the object in the constructor for dependency injection (whetever it means ...)
+        public HousesController(ModelContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper; // initialize mapper
         }
 
         // GET: api/Houses
@@ -81,12 +84,17 @@ namespace Task2_restAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<House>> PostHouse(CreateHouseDTO houseDTO)
         {
-            var config = new MapperConfiguration(cfg => // for DTO
-           {
-               cfg.CreateMap<CreateHouseDTO, House>();
-           });
-            IMapper iMapper = config.CreateMapper();
-            var house = iMapper.Map<CreateHouseDTO, House>(houseDTO);
+
+            // souce -> https://stackoverflow.com/questions/40275195/how-to-set-up-automapper-in-asp-net-core
+            // Instantiate the mapped data transfer object
+            // using the mapper you stored in the private field.
+            // The type of the source object is the first type argument
+            // and the type of the destination is the second.
+            // Pass the source object you just instantiated above
+            // as the argument to the _mapper.Map<>() method.
+
+            var house = _mapper.Map<CreateHouseDTO, House>(houseDTO); // just this single line
+            // which maps HouseDTO to House
             _context.Houses.Add(house);
             await _context.SaveChangesAsync();
 

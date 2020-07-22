@@ -15,6 +15,20 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/8.0.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[10.0.0, 11.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.0.0",
+          "Microsoft.Extensions.Options": "3.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.5": {
         "type": "package",
         "compile": {
@@ -2776,6 +2790,19 @@
         "lib/net461/AutoMapper.xml",
         "lib/netstandard2.0/AutoMapper.dll",
         "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/8.0.1": {
+      "sha512": "hhUzmc8Ld7wCuVHJFodsxtPmFqBAhB6nUNQUgaMF3uamQdxOLxntG0dwv+5ApC67GABa8Oay8MEYGg5IgVZP1Q==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/8.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.5": {
@@ -8798,6 +8825,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.0.0",
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.0.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.5",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.5",
       "Microsoft.EntityFrameworkCore.InMemory >= 3.1.5",
@@ -8814,11 +8842,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI.csproj",
+      "projectUniqueName": "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\Task2_restAPI.csproj",
       "projectName": "Task2_restAPI",
-      "projectPath": "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI.csproj",
+      "projectPath": "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\Task2_restAPI.csproj",
       "packagesPath": "C:\\Users\\NatalijaMarkvarte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NatalijaMarkvarte\\Downloads\\19-06-2020_17-56-31\\19-06-2020_17-56-31\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\Task2_restAPI\\obj\\",
+      "outputPath": "C:\\Users\\NatalijaMarkvarte\\source\\repos\\backend\\Task2_restAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -8852,6 +8880,10 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[10.0.0, )"
+          },
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[8.0.1, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
