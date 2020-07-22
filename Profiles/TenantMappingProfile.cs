@@ -17,6 +17,11 @@ namespace Task2_restAPI.Profiles
             // DTOobject into original object and vice versa
             CreateMap<Tenant, CreateTenantDTO>();
             CreateMap<CreateTenantDTO, Tenant>();
+            CreateMap<Tenant, TenantVM>()
+            .ForMember(
+                dest => dest.HouseId,
+                opts => opts.MapFrom(h => h.Flat.HouseId)
+                );
         }
     }
 }

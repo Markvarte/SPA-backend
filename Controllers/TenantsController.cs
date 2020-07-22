@@ -27,17 +27,33 @@ namespace Task2_restAPI.Controllers
         }
 
         // GET: api/Tenants
+        // Methods get tenants with house id
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tenant>>> GetTenants()
+        public async Task<ActionResult<IEnumerable<TenantVM>>> GetTenants()
         {
-            return await _context.Tenants.ToListAsync();
+            List<TenantVM> resultTenants = new List<TenantVM>(); // initialize empty list
+            TenantVM tenantWithHouseId; // define temp variable
+            // get tenants list from DB
+            var tenantsFromDB = await _context.Tenants.Include(x => x.Flat).ToListAsync();
+            // for each element in list => map it into TenantVM and add to result list
+            foreach (Tenant ten in tenantsFromDB) {
+               tenantWithHouseId = _mapper.Map<Tenant, TenantVM>(ten);
+               resultTenants.Add(tenantWithHouseId);
+
+                }
+
+            return resultTenants;
         }
 
         // GET: api/Tenants/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Tenant>> GetTenant(int id)
         {
-            var tenant = await _context.Tenants.FindAsync(id);
+            var tenant = await _context.Tenants
+                .Include(x => x.Flat) // for getting Flat information; this is not neccessary there, but i want to remember this
+                .ThenInclude(x => x.House) // for after flat info getting House info
+                .FirstOrDefaultAsync(x => x.Id == id) // worse analog FindAsync(id);
+            ;
 
             if (tenant == null)
             {
