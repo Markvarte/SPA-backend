@@ -34,7 +34,10 @@ namespace Task2_restAPI.Controllers
             List<TenantVM> resultTenants = new List<TenantVM>(); // initialize empty list
             TenantVM tenantWithHouseId; // define temp variable
             // get tenants list from DB
-            var tenantsFromDB = await _context.Tenants.Include(x => x.Flat).ToListAsync();
+            var tenantsFromDB = await _context.Tenants
+                .Include(x => x.Flat)
+                .ThenInclude(x => x.House) // for after flat info getting House info
+                .ToListAsync();
             // for each element in list => map it into TenantVM and add to result list
             foreach (Tenant ten in tenantsFromDB) {
                tenantWithHouseId = _mapper.Map<Tenant, TenantVM>(ten);
@@ -71,7 +74,10 @@ namespace Task2_restAPI.Controllers
             List<TenantVM> resultTenants = new List<TenantVM>(); // initialize empty list
             TenantVM tenantWithHouseId; // define temp variable
             // get tenants list from DB
-            var tenantsFromDB = await _context.Tenants.Include(x => x.Flat).Where(tenant => tenant.FlatId == flatId).ToListAsync();
+            var tenantsFromDB = await _context.Tenants
+                .Include(x => x.Flat)
+                .ThenInclude(x => x.House) // for after flat info getting House info
+                .Where(tenant => tenant.FlatId == flatId).ToListAsync();
             // for each element in list => map it into TenantVM and add to result list
             foreach (Tenant ten in tenantsFromDB)
             {

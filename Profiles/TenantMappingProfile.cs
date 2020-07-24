@@ -14,14 +14,23 @@ namespace Task2_restAPI.Profiles
     {
         public TenantMappingProfile()
         { // into profile consructor creates map to transferm 
-            // DTOobject into original object and vice versa
+            // DTOobject and view models objects into original object and vice versa
             CreateMap<Tenant, CreateTenantDTO>();
             CreateMap<CreateTenantDTO, Tenant>();
             CreateMap<Tenant, TenantVM>()
             .ForMember(
+                dest => dest.FlatNum,
+                opts => opts.MapFrom(f => f.Flat.Num))
+            .ForMember(
                 dest => dest.HouseId,
-                opts => opts.MapFrom(h => h.Flat.HouseId)
-                );
+                opts => opts.MapFrom(h => h.Flat.HouseId))
+            .ForMember(
+                dest => dest.HouseNum,
+                opts => opts.MapFrom(h => h.Flat.House.Num))
+            .ForMember(
+                dest => dest.HouseStreet,
+                opts => opts.MapFrom(h => h.Flat.House.Street))
+            ;
         }
     }
 }

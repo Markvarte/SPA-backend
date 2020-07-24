@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Task2_restAPI.ViewModels
 {
+    public class FlatVM
+    {
+
+    }
     public class CreateFlatDTO
     {
         public int Num { get; set; }

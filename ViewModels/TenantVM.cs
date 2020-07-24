@@ -41,7 +41,14 @@ namespace Task2_restAPI.ViewModels
         public string EMail { get; set; }
 
         public int FlatId { get; set; }
-        public int HouseId { get; set; } // HouseId is needed on frontend in Tenant list
-        // to gets back to Flats which depends on houseId 
+        // This field is needed on frontend to display on which flat user is in
+        public int FlatNum { get; set; }
+        // HouseId is needed on frontend in Tenant list
+        // to gets back to Flats which depends on houseId
+        public int HouseId { get; set; }  
+        // This field is needed on frontend to display on which house user is in
+        public int HouseNum { get; set; }
+        // This field is needed on frontend to display on which street user is in
+        public string HouseStreet { get; set; }
     }
 }
