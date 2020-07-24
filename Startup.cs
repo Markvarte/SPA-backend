@@ -10,6 +10,7 @@ using AutoMapper;
 using Task2_restAPI.ViewModels;
 using Task2_restAPI.Profiles;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Task2_restAPI
 {
@@ -28,7 +29,16 @@ namespace Task2_restAPI
             services.AddDbContext<ModelContext>(opt =>
             // for creating SQL database (not  UseInMemoryDatabase)
             opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
-            services.AddControllers();
+            services.AddControllers()
+                // solution for JsonException:
+                // A possible object cycle was detected which is not supported.
+                // This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32.
+                // source -> https://stackoverflow.com/questions/60197270/jsonexception-a-possible-object-cycle-was-detected-which-is-not-supported-this
+                .AddNewtonsoftJson(
+          options => {
+              options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+          })
+            ;
 
             services.AddCors(); // for cors and front-end
 

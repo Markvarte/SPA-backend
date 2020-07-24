@@ -19,7 +19,6 @@ namespace Task2_restAPI.Controllers
         private readonly IMapper _mapper; // creates mapper instance ? 
 
         // Assign the object in the constructor for dependency injection (whetever it means ...)
-
         public TenantsController(ModelContext context, IMapper mapper)
         {
             _context = context;
@@ -50,20 +49,21 @@ namespace Task2_restAPI.Controllers
 
         // GET: api/Tenants/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Tenant>> GetTenant(int id)
+        public async Task<ActionResult<TenantVM>> GetTenant(int id)
         {
+            // get tenant from DB
             var tenant = await _context.Tenants
-                .Include(x => x.Flat) // for getting Flat information; this is not neccessary there, but i want to remember this
+                .Include(x => x.Flat) // for getting Flat information
                 .ThenInclude(x => x.House) // for after flat info getting House info
-                .FirstOrDefaultAsync(x => x.Id == id) // worse analog FindAsync(id);
+                .FirstOrDefaultAsync(x => x.Id == id) // worse analog is FindAsync(id);
             ;
-
             if (tenant == null)
             {
                 return NotFound();
             }
-
-            return tenant;
+            // if tenant exist map it from db object to view model object and sent to client
+            TenantVM tenantVM = _mapper.Map<Tenant, TenantVM>(tenant);
+            return tenantVM;
         }
 
         // GET: api/Flat/5/Tenants

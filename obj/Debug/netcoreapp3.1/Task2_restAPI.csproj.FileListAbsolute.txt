@@ -629,8 +629,6 @@ C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\bin\Debug\netcorea
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.csprojAssemblyReference.cache
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.AssemblyInfoInputs.cache
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.AssemblyInfo.cs
-C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.csproj.CoreCompileInputs.cache
-C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.RazorTargetAssemblyInfo.cache
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.csproj.CopyComplete
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\staticwebassets\Task2_restAPI.StaticWebAssets.Manifest.cache
@@ -638,3 +636,8 @@ C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcorea
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.dll
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.pdb
 C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.genruntimeconfig.cache
+C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.csproj.CoreCompileInputs.cache
+C:\Users\NatalijaMarkvarte\source\repos\backend\Task2_restAPI\obj\Debug\netcoreapp3.1\Task2_restAPI.MvcApplicationPartsAssemblyInfo.cache

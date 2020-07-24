@@ -33,24 +33,40 @@ namespace Task2_restAPI.Controllers
 
         // GET: api/Flats/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Flat>> GetFlat(int id)
+        public async Task<ActionResult<FlatVM>> GetFlat(int id)
         {
-            var flat = await _context.Flats.FindAsync(id);
+            var flat = await _context.Flats
+                .Include(x => x.House) // for getting house information
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (flat == null)
             {
                 return NotFound();
             }
 
-            return flat;
+            FlatVM flatVM = _mapper.Map<Flat, FlatVM>(flat);
+            return flatVM;
         }
 
         //GET: /api/House/5/flats
         [HttpGet("/api/House/{houseId}/[controller]")]
-        public async Task<IEnumerable<Flat>> GetFlatsByHouseId(int houseId)
+        public async Task<IEnumerable<FlatVM>> GetFlatsByHouseId(int houseId)
         {
-            var rezult = await _context.Flats.Where(flat => flat.HouseId == houseId).ToListAsync();
-            return rezult; // должно возвращать нужные квартиры или пустой список
+            List<FlatVM> resultFlats = new List<FlatVM>(); // initialize empty list
+            FlatVM flatsVM; // define temp variable
+            // get flats list from DB
+            var flatsFromDB = await _context.Flats
+                .Include(x => x.House)
+                .Where(flat => flat.HouseId == houseId).ToListAsync();
+
+            // for each element in list => map it into TenantVM and add to result list
+            foreach (Flat flat in flatsFromDB)
+            {
+                flatsVM = _mapper.Map<Flat, FlatVM>(flat);
+                resultFlats.Add(flatsVM);
+
+            }
+            return resultFlats; // должно возвращать нужные квартиры или пустой список
         }
         // PUT: api/Flats/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
